@@ -2,11 +2,13 @@ import {
   JupyterLab, JupyterLabPlugin
 } from '@jupyterlab/application';
 
-import { Widget } from '@phosphor/widgets';
-
 import {
   ITopBar
 } from 'jupyterlab-topbar';
+
+import {
+  MemoryUsage
+} from './memoryUsage';
 
 import '../style/index.css';
 
@@ -24,8 +26,8 @@ const extension: JupyterLabPlugin<void> = {
     app: JupyterLab,
     topBar: ITopBar
   ) => {
-    let widget = new Widget();
-    topBar.addItem(widget);
+    let memoryUsage = new MemoryUsage();
+    topBar.addItem('example', memoryUsage);
 
     console.log('JupyterLab extension jupyterlab-system-monitor is activated!');
   }
