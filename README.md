@@ -8,6 +8,7 @@ Provides an alternative frontend for the `nbresuse` metrics: [https://github.com
 
 - Add CPU usage
 - Add Network I/O
+- Expose settings
 
 ## Prerequisites
 
