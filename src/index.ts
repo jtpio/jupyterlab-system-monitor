@@ -7,8 +7,8 @@ import {
 } from 'jupyterlab-topbar';
 
 import {
-  MemoryUsage
-} from './memoryUsage';
+  MemoryView
+} from './memoryView';
 
 import '../style/index.css';
 
@@ -26,8 +26,8 @@ const extension: JupyterLabPlugin<void> = {
     app: JupyterLab,
     topBar: ITopBar
   ) => {
-    let memoryUsage = new MemoryUsage();
-    topBar.addItem('example', memoryUsage);
+    let memory = new MemoryView();
+    topBar.addItem('memory', memory);
 
     console.log('JupyterLab extension jupyterlab-system-monitor is activated!');
   }

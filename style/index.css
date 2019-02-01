@@ -1,0 +1,31 @@
+.jp-MemoryContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.jp-MemoryContainer div {
+    margin-right: 5px;
+}
+
+.jp-MemoryFiller {
+    background: green;
+    height: 100%;
+}
+
+.jp-MemoryText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.jp-MemoryWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.jp-MemoryBar {
+    height: 75%;
+    border: 1px solid black;
+}
