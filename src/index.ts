@@ -28,8 +28,6 @@ const extension: JupyterLabPlugin<void> = {
   ) => {
     let memory = new MemoryView();
     topBar.addItem('memory', memory);
-
-    console.log('JupyterLab extension jupyterlab-system-monitor is activated!');
   }
 };
 
