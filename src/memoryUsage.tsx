@@ -10,7 +10,6 @@ import { VDomModel, VDomRenderer } from '@jupyterlab/apputils';
 
 import { URLExt } from '@jupyterlab/coreutils';
 
-
 import { ServerConnection } from '@jupyterlab/services';
 
 /**
@@ -47,7 +46,7 @@ export class MemoryUsage extends VDomRenderer<MemoryUsage.Model> {
       }`;
     }
     // todo
-    return <div className="jp-TopBarItem">{text}</div>;
+    return <div>{text}</div>;
   }
 }
 
