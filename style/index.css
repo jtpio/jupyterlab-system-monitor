@@ -3,10 +3,6 @@
     flex-direction: row;
 }
 
-.jp-MemoryContainer div {
-    margin-right: 5px;
-}
-
 .jp-MemoryFiller {
     background: green;
     height: 100%;
@@ -23,6 +19,8 @@
     flex-direction: column;
     flex-grow: 1;
     justify-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .jp-MemoryBar {
