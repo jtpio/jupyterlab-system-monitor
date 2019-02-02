@@ -32,7 +32,8 @@ export class MemoryView extends VDomRenderer<MemoryUsage.Model> {
       return null;
     }
     const { memoryLimit, currentMemory, units } = this.model;
-    const text = `${currentMemory.toFixed(2)} ${memoryLimit ? '/ ' + memoryLimit.toFixed(2) : ''} ${units}`;
+    const precision = ['B', 'KB', 'MB'].indexOf(units) > 0 ? 0 : 2;
+    const text = `${currentMemory.toFixed(precision)} ${memoryLimit ? '/ ' + memoryLimit.toFixed(precision) : ''} ${units}`;
     let percentage = memoryLimit ? Math.min((currentMemory / memoryLimit) * 100, 100) : null;
     return (
         <div className="jp-MemoryContainer" style={percentage && { width: '200px' }}>
