@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-system-monitor",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "JupyterLab extension to display system information",
   "keywords": [
     "jupyter",
