@@ -2,7 +2,7 @@ import React from 'react';
 
 import { VDomRenderer } from '@jupyterlab/apputils';
 
-import { MemoryUsage } from './memoryUsage';
+import { MemoryUsage } from '@jupyterlab/statusbar';
 
 const MemoryFiller = (props: any) => {
     return (
