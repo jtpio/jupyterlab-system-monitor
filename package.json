@@ -32,11 +32,20 @@
   "dependencies": {
     "@jupyterlab/application": "^0.19.1",
     "@jupyterlab/statusbar": "^1.0.0-alpha.3",
-    "jupyterlab-topbar": "^0.1.1"
+    "jupyterlab-topbar": "^0.1.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-sparklines": "^1.7.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
-    "typescript": "~3.1.1"
+    "typescript": "~3.1.1",
+    "@types/react": "^16.8.1",
+    "@types/react-dom": "^16.8.1",
+    "@types/react-sparklines": "^1.7.0"
+  },
+  "resolutions": {
+    "@types/react": "16.8.1"
   },
   "jupyterlab": {
     "extension": true
