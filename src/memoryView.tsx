@@ -45,7 +45,7 @@ class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
   }
 
   render() {
-    let color = this.props.percentage > 0.5
+    const color = this.props.percentage > 0.5
             ? this.props.percentage > 0.8
               ? "red"
               : "orange"
