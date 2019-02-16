@@ -11,7 +11,6 @@ const N_BUFFER = 20;
 interface IMemoryBarProps {
   data: number[];
   percentage: number;
-  text: string;
 }
 
 interface IMemoryBarState {
@@ -111,7 +110,7 @@ export class MemoryView extends VDomRenderer<MemoryModel> {
         <div className="jp-MemoryText">Mem: </div>
         <div className="jp-MemoryWrapper">
           {percentage && (
-            <MemoryBar data={values} percentage={percentage} text={text} />
+            <MemoryBar data={values} percentage={percentage} />
           )}
         </div>
         <div className="jp-MemoryText">{text}</div>
