@@ -55,13 +55,21 @@ class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
 
     if (this.state.isSparklines) {
       component = (
-        <Sparklines data={this.props.data} min={0.0} max={1.0} limit={N_BUFFER}>
+        <Sparklines
+          data={this.props.data}
+          min={0.0}
+          max={1.0}
+          limit={N_BUFFER}
+          preserveAspectRatio={"xMidYMax slice"}
+          svgHeight={"100%"}
+          svgWidth={"100%"}
+        >
           <SparklinesLine
             style={{
               stroke: color,
-              strokeWidth: 3,
+              strokeWidth: 4,
               fill: color,
-              fillOpacity: 0.6
+              fillOpacity: 1
             }}
           />
           <SparklinesSpots />
@@ -109,9 +117,7 @@ export class MemoryView extends VDomRenderer<MemoryModel> {
       >
         <div className="jp-MemoryText">Mem: </div>
         <div className="jp-MemoryWrapper">
-          {percentage && (
-            <MemoryBar data={values} percentage={percentage} />
-          )}
+          {percentage && <MemoryBar data={values} percentage={percentage} />}
         </div>
         <div className="jp-MemoryText">{text}</div>
       </div>
