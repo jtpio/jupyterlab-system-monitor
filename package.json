@@ -15,7 +15,8 @@
   "author": "Jeremy Tuloup",
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
-    "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
+    "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}",
+    "schema/*.json"
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -31,6 +32,7 @@
   },
   "dependencies": {
     "@jupyterlab/application": "^0.19.1",
+    "@jupyterlab/coreutils": "^2.1.0",
     "@jupyterlab/statusbar": "^1.0.0-alpha.3",
     "jupyterlab-topbar": "^0.1.1",
     "react": "^16.8.1",
@@ -48,6 +50,7 @@
     "@types/react": "16.8.1"
   },
   "jupyterlab": {
-    "extension": true
+    "extension": true,
+    "schemaDir": "schema"
   }
 }

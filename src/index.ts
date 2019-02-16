@@ -1,33 +1,33 @@
-import {
-  JupyterLab, JupyterLabPlugin
-} from '@jupyterlab/application';
+import { JupyterLab, JupyterLabPlugin } from "@jupyterlab/application";
 
-import {
-  ITopBar
-} from 'jupyterlab-topbar';
+import { ISettingRegistry } from "@jupyterlab/coreutils";
 
-import {
-  MemoryView
-} from './memoryView';
+import { ITopBar } from "jupyterlab-topbar";
 
-import '../style/index.css';
+import { MemoryView } from "./memoryView";
 
+import "../style/index.css";
 
 /**
  * Initialization data for the jupyterlab-system-monitor extension.
  */
 const extension: JupyterLabPlugin<void> = {
-  id: 'jupyterlab-system-monitor',
+  id: "jupyterlab-system-monitor:plugin",
   autoStart: true,
-  requires: [
-    ITopBar,
-  ],
-  activate: (
+  requires: [ITopBar],
+  optional: [ISettingRegistry],
+  activate: async (
     app: JupyterLab,
-    topBar: ITopBar
+    topBar: ITopBar,
+    settingRegistry: ISettingRegistry,
   ) => {
-    let memory = new MemoryView();
-    topBar.addItem('memory', memory);
+    let refreshRate;
+    if (settingRegistry) {
+      const settings = await settingRegistry.load(extension.id);
+      refreshRate = settings.get('refreshRate').composite as number;
+    }
+    let memory = new MemoryView(refreshRate);
+    topBar.addItem("memory", memory);
   }
 };
 

@@ -1,0 +1,18 @@
+{
+  "jupyter.lab.setting-icon-class": "jp-BuildIcon",
+  "jupyter.lab.setting-icon-label": "System Monitor",
+  "title": "System Monitor",
+  "description": "System Monitor",
+  "properties": {
+    "refreshRate": {
+      "title": "Refresh Rate (ms)",
+      "description": "Refresh Rate to sync metrics data",
+      "default": 5000,
+      "type": "number"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object"
+}
+
+
