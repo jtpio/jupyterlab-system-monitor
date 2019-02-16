@@ -42,14 +42,15 @@ class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
     this.setState({
       isSparklines: !this.state.isSparklines
     });
-  }
+  };
 
   render() {
-    const color = this.props.percentage > 0.5
-            ? this.props.percentage > 0.8
-              ? "red"
-              : "orange"
-            : "green"
+    const color =
+      this.props.percentage > 0.5
+        ? this.props.percentage > 0.8
+          ? "red"
+          : "orange"
+        : "green";
 
     let component;
 
@@ -68,50 +69,40 @@ class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
         </Sparklines>
       );
     } else {
-      component = <MemoryFiller percentage={this.props.percentage} color={color} />;
+      component = (
+        <MemoryFiller percentage={this.props.percentage} color={color} />
+      );
     }
 
     return (
-      <div
-        className="jp-MemoryBar"
-        onClick={() => this.toggleSparklines()}
-      >
+      <div className="jp-MemoryBar" onClick={() => this.toggleSparklines()}>
         {component}
       </div>
     );
   }
 }
 
-export class MemoryView extends VDomRenderer<MemoryUsage.Model> {
+export class MemoryView extends VDomRenderer<MemoryModel> {
   constructor(refreshRate: number = 5000) {
     super();
-    this.model = new MemoryUsage.Model({ refreshRate });
-    this.values = new Array(N_BUFFER).fill(0);
-    this._intervalId = setInterval(
-      () => this.model.stateChanged.emit(void 0),
-      refreshRate
-    );
-  }
-
-  dispose() {
-    clearInterval(this._intervalId);
-    super.dispose();
+    this.model = new MemoryModel({ refreshRate });
   }
 
   render() {
     if (!this.model) {
       return null;
     }
-    const { memoryLimit, currentMemory, units } = this.model;
+    const {
+      memoryLimit,
+      currentMemory,
+      units,
+      percentage,
+      values
+    } = this.model;
     const precision = ["B", "KB", "MB"].indexOf(units) > 0 ? 0 : 2;
     const text = `${currentMemory.toFixed(precision)} ${
       memoryLimit ? "/ " + memoryLimit.toFixed(precision) : ""
     } ${units}`;
-    let percentage = memoryLimit
-      ? Math.min(currentMemory / memoryLimit, 1)
-      : null;
-    this.values.push(percentage);
-    this.values.shift();
     return (
       <div
         className="jp-MemoryContainer"
@@ -120,18 +111,48 @@ export class MemoryView extends VDomRenderer<MemoryUsage.Model> {
         <div className="jp-MemoryText">Mem: </div>
         <div className="jp-MemoryWrapper">
           {percentage && (
-            <MemoryBar
-              data={this.values}
-              percentage={percentage}
-              text={text}
-            />
+            <MemoryBar data={values} percentage={percentage} text={text} />
           )}
         </div>
         <div className="jp-MemoryText">{text}</div>
       </div>
     );
   }
+}
 
-  private values: number[];
-  private _intervalId: any;
+class MemoryModel extends MemoryUsage.Model {
+  constructor(options: MemoryUsage.Model.IOptions) {
+    super(options);
+    this._values = new Array(N_BUFFER).fill(0);
+    this._refreshIntervalId = setInterval(
+      () => this.updateValues(),
+      options.refreshRate
+    );
+  }
+
+  updateValues() {
+    this._percentage = this.memoryLimit
+      ? Math.min(this.currentMemory / this.memoryLimit, 1)
+      : null;
+    this.values.push(this._percentage);
+    this.values.shift();
+    this.stateChanged.emit(void 0);
+  }
+
+  dispose() {
+    clearInterval(this._refreshIntervalId);
+    super.dispose();
+  }
+
+  get values(): number[] {
+    return this._values;
+  }
+
+  get percentage(): number {
+    return this._percentage;
+  }
+
+  private _percentage: number | null = null;
+  private _values: number[];
+  private _refreshIntervalId: any;
 }
