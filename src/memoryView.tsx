@@ -60,9 +60,8 @@ class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
           min={0.0}
           max={1.0}
           limit={N_BUFFER}
-          preserveAspectRatio={"xMidYMax slice"}
-          svgHeight={"100%"}
-          svgWidth={"100%"}
+          width={250}
+          margin={0}
         >
           <SparklinesLine
             style={{
