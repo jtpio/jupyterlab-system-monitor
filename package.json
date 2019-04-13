@@ -31,9 +31,9 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^0.19.1",
-    "@jupyterlab/coreutils": "^2.1.0",
-    "@jupyterlab/statusbar": "^1.0.0-alpha.3",
+    "@jupyterlab/application": "^1.0.0-alpha.6",
+    "@jupyterlab/coreutils": "^3.0.0-alpha.6",
+    "@jupyterlab/statusbar": "^1.0.0-alpha.6",
     "jupyterlab-topbar": "^0.1.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
@@ -45,9 +45,6 @@
     "@types/react-sparklines": "^1.7.0",
     "rimraf": "^2.6.1",
     "typescript": "~3.1.1"
-  },
-  "resolutions": {
-    "@types/react": "16.8.1"
   },
   "jupyterlab": {
     "extension": true,

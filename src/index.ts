@@ -1,4 +1,4 @@
-import { JupyterLab, JupyterLabPlugin } from "@jupyterlab/application";
+import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application";
 
 import { ISettingRegistry } from "@jupyterlab/coreutils";
 
@@ -11,13 +11,13 @@ import "../style/index.css";
 /**
  * Initialization data for the jupyterlab-system-monitor extension.
  */
-const extension: JupyterLabPlugin<void> = {
+const extension: JupyterFrontEndPlugin<void> = {
   id: "jupyterlab-system-monitor:plugin",
   autoStart: true,
   requires: [ITopBar],
   optional: [ISettingRegistry],
   activate: async (
-    app: JupyterLab,
+    app: JupyterFrontEnd,
     topBar: ITopBar,
     settingRegistry: ISettingRegistry,
   ) => {
