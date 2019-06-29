@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-system-monitor",
-  "version": "0.4.0-alpha.2",
+  "version": "0.4.0-rc.0",
   "description": "JupyterLab extension to display system information",
   "keywords": [
     "jupyter",
@@ -26,15 +26,15 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rimraf lib",
+    "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build",
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^1.0.0-alpha.6",
-    "@jupyterlab/coreutils": "^3.0.0-alpha.6",
-    "@jupyterlab/statusbar": "^1.0.0-alpha.6",
-    "jupyterlab-topbar": "^0.4.0-alpha.2",
+    "@jupyterlab/application": "^1.0.0",
+    "@jupyterlab/coreutils": "^3.0.0",
+    "@jupyterlab/statusbar": "^1.0.0",
+    "jupyterlab-topbar": "^0.4.0-rc.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-sparklines": "^1.7.0"
@@ -44,7 +44,7 @@
     "@types/react-dom": "^16.8.1",
     "@types/react-sparklines": "^1.7.0",
     "rimraf": "^2.6.1",
-    "typescript": "~3.1.1"
+    "typescript": "~3.5.1"
   },
   "jupyterlab": {
     "extension": true,
