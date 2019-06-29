@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-system-monitor",
-  "version": "0.4.0-rc.0",
+  "version": "0.4.0-rc.1",
   "description": "JupyterLab extension to display system information",
   "keywords": [
     "jupyter",
@@ -34,7 +34,7 @@
     "@jupyterlab/application": "^1.0.0",
     "@jupyterlab/coreutils": "^3.0.0",
     "@jupyterlab/statusbar": "^1.0.0",
-    "jupyterlab-topbar": "^0.4.0-rc.0",
+    "jupyterlab-topbar": "^0.4.0-rc.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-sparklines": "^1.7.0"
