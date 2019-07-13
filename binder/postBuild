@@ -1,0 +1,4 @@
+set -xe
+
+jupyter labextension install jupyterlab-topbar-extension@0.4.0 \
+                             jupyterlab-system-monitor@0.4.0
