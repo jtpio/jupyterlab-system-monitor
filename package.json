@@ -7,9 +7,9 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/jtpio/jupyterlab-topbar",
+  "homepage": "https://github.com/jtpio/jupyterlab-system-monitor",
   "bugs": {
-    "url": "https://github.com/jtpio/jupyterlab-topbar/issues"
+    "url": "https://github.com/jtpio/jupyterlab-system-monitor/issues"
   },
   "license": "BSD-3-Clause",
   "author": "Jeremy Tuloup",
@@ -22,7 +22,7 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jtpio/jupyterlab-topbar.git"
+    "url": "https://github.com/jtpio/jupyterlab-system-monitor.git"
   },
   "scripts": {
     "build": "tsc",
