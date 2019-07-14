@@ -1,4 +1,7 @@
-import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application";
+import {
+  JupyterFrontEnd,
+  JupyterFrontEndPlugin
+} from "@jupyterlab/application";
 
 import { ISettingRegistry } from "@jupyterlab/coreutils";
 
@@ -19,12 +22,12 @@ const extension: JupyterFrontEndPlugin<void> = {
   activate: async (
     app: JupyterFrontEnd,
     topBar: ITopBar,
-    settingRegistry: ISettingRegistry,
+    settingRegistry: ISettingRegistry
   ) => {
     let refreshRate;
     if (settingRegistry) {
       const settings = await settingRegistry.load(extension.id);
-      refreshRate = settings.get('refreshRate').composite as number;
+      refreshRate = settings.get("refreshRate").composite as number;
     }
     let memory = new MemoryView(refreshRate);
     topBar.addItem("memory", memory);

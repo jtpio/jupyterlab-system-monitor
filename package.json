@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "prettier": "prettier --write '**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}'",
     "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build",
     "watch": "tsc -w"
@@ -43,8 +44,24 @@
     "@types/react": "^16.8.1",
     "@types/react-dom": "^16.8.1",
     "@types/react-sparklines": "^1.7.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0",
     "rimraf": "^2.6.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "~3.5.1"
+  },
+  "lint-staged": {
+    "**/*{.ts,.tsx,.css,.json,.md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "jupyterlab": {
     "extension": true,
