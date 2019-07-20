@@ -2,14 +2,13 @@ import React from "react";
 
 import { Sparklines, SparklinesLine, SparklinesSpots } from "react-sparklines";
 
-import { VDomRenderer } from "@jupyterlab/apputils";
-
 import { MemoryUsage } from "@jupyterlab/statusbar";
+import { ReactWidget } from "@jupyterlab/apputils";
 
 const N_BUFFER = 20;
 
 interface IMemoryBarProps {
-  data: number[];
+  values: number[];
   percentage: number;
 }
 
@@ -30,7 +29,7 @@ const MemoryFiller = (props: any) => {
 };
 
 class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
-  constructor(props: any) {
+  constructor(props: IMemoryBarProps) {
     super(props);
     this.state = {
       isSparklines: false
@@ -51,74 +50,71 @@ class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
           : "orange"
         : "green";
 
-    let component;
-
-    if (this.state.isSparklines) {
-      component = (
-        <Sparklines
-          data={this.props.data}
-          min={0.0}
-          max={1.0}
-          limit={N_BUFFER}
-          width={250}
-          margin={0}
-        >
-          <SparklinesLine
-            style={{
-              stroke: color,
-              strokeWidth: 4,
-              fill: color,
-              fillOpacity: 1
-            }}
-          />
-          <SparklinesSpots />
-        </Sparklines>
-      );
-    } else {
-      component = (
-        <MemoryFiller percentage={this.props.percentage} color={color} />
-      );
-    }
-
     return (
       <div className="jp-MemoryBar" onClick={() => this.toggleSparklines()}>
-        {component}
+        {this.state.isSparklines && (
+          <Sparklines
+            data={this.props.values}
+            min={0.0}
+            max={1.0}
+            limit={N_BUFFER}
+            width={250}
+            margin={0}
+          >
+            <SparklinesLine
+              style={{
+                stroke: color,
+                strokeWidth: 4,
+                fill: color,
+                fillOpacity: 1
+              }}
+            />
+            <SparklinesSpots />
+          </Sparklines>
+        )}
+        {!this.state.isSparklines && (
+          <MemoryFiller percentage={this.props.percentage} color={color} />
+        )}
       </div>
     );
   }
 }
 
-export class MemoryView extends VDomRenderer<MemoryModel> {
-  constructor(refreshRate: number = 5000) {
-    super();
-    this.model = new MemoryModel({ refreshRate });
+interface IMemoryUsageProps {
+  label: string;
+  text: string;
+  values: number[];
+  percentage: number;
+}
+
+interface IMemoryUsageState {
+  isSparklines: boolean;
+}
+
+export class MemoryUsageComponent extends React.Component<
+  IMemoryUsageProps,
+  IMemoryUsageState
+> {
+  constructor(props: IMemoryUsageProps) {
+    super(props);
   }
 
   render() {
-    if (!this.model) {
-      return null;
-    }
-    const {
-      memoryLimit,
-      currentMemory,
-      units,
-      percentage,
-      values
-    } = this.model;
-    const precision = ["B", "KB", "MB"].indexOf(units) > 0 ? 0 : 2;
-    const text = `${currentMemory.toFixed(precision)} ${
-      memoryLimit ? "/ " + memoryLimit.toFixed(precision) : ""
-    } ${units}`;
     return (
       <div
         className="jp-MemoryContainer"
-        style={percentage && { width: "200px" }}
+        style={this.props.percentage && { width: "200px" }}
       >
-        <div className="jp-MemoryText">Mem: </div>
+        <div className="jp-MemoryText">{this.props.label}</div>
         <div className="jp-MemoryWrapper">
-          {percentage && <MemoryBar data={values} percentage={percentage} />}
+          {this.props.percentage && (
+            <MemoryBar
+              values={this.props.values}
+              percentage={this.props.percentage}
+            />
+          )}
         </div>
-        <div className="jp-MemoryText">{text}</div>
+        <div className="jp-MemoryText">{this.props.text}</div>
       </div>
     );
   }
@@ -159,4 +155,70 @@ class MemoryModel extends MemoryUsage.Model {
   private _percentage: number | null = null;
   private _values: number[];
   private _refreshIntervalId: any;
+}
+
+interface IMemoryViewProps {
+  refreshRate: number;
+}
+
+interface IMemoryViewState extends IMemoryUsageProps {}
+
+export class MemoryView extends React.Component<
+  IMemoryViewProps,
+  IMemoryViewState
+> {
+  constructor(props: IMemoryViewProps) {
+    super(props);
+    const { refreshRate } = props;
+    this.state = {
+      label: "Mem:",
+      text: "0 / 0 B",
+      values: [],
+      percentage: 0.1
+    };
+    this.model = new MemoryModel({ refreshRate });
+  }
+
+  handleUpdate = () => {
+    if (!this.model) {
+      return;
+    }
+    const {
+      memoryLimit,
+      currentMemory,
+      units,
+      percentage,
+      values
+    } = this.model;
+    const precision = ["B", "KB", "MB"].indexOf(units) > 0 ? 0 : 2;
+    const text = `${currentMemory.toFixed(precision)} ${
+      memoryLimit ? "/ " + memoryLimit.toFixed(precision) : ""
+    } ${units}`;
+
+    this.setState({
+      text,
+      values,
+      percentage
+    });
+  };
+
+  componentDidMount = () => {
+    this.model.stateChanged.connect(this.handleUpdate);
+  };
+
+  componentWillUnmount = () => {
+    this.model.stateChanged.disconnect(this.handleUpdate);
+  };
+
+  render() {
+    return <MemoryUsageComponent {...this.state} />;
+  }
+
+  readonly model: MemoryModel;
+}
+
+export namespace MemoryView {
+  export function createMemoryView(refreshRate: number) {
+    return ReactWidget.create(<MemoryView refreshRate={refreshRate} />);
+  }
 }
