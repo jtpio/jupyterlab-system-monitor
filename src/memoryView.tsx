@@ -84,7 +84,7 @@ interface IMemoryUsageProps {
   label: string;
   text: string;
   values: number[];
-  percentage: number;
+  percentage: number | null;
 }
 
 interface IMemoryUsageState {
@@ -174,7 +174,7 @@ export class MemoryView extends React.Component<
       label: "Mem:",
       text: "0 / 0 B",
       values: [],
-      percentage: 0.1
+      percentage: null
     };
     this.model = new MemoryModel({ refreshRate });
   }
