@@ -29,7 +29,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       const settings = await settingRegistry.load(extension.id);
       refreshRate = settings.get("refreshRate").composite as number;
     }
-    let memory = new MemoryView(refreshRate);
+    let memory = MemoryView.createMemoryView(refreshRate);
     topBar.addItem("memory", memory);
   }
 };
