@@ -19,10 +19,10 @@
 .jp-MemoryWrapper {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   justify-content: center;
   margin-left: 5px;
   margin-right: 5px;
+  width: 75px;
 }
 
 .jp-MemoryBar {

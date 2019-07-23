@@ -1,0 +1,75 @@
+{
+  "name": "jupyterlab-system-monitor",
+  "version": "0.4.0",
+  "description": "JupyterLab extension to display system information",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
+  "homepage": "https://github.com/jtpio/jupyterlab-system-monitor",
+  "bugs": {
+    "url": "https://github.com/jtpio/jupyterlab-system-monitor/issues"
+  },
+  "license": "BSD-3-Clause",
+  "author": "Jeremy Tuloup",
+  "files": [
+    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}",
+    "schema/*.json"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jtpio/jupyterlab-system-monitor.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prettier": "prettier --write '**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}'",
+    "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
+    "prepare": "npm run clean && npm run build",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "@jupyterlab/application": "^1.0.0",
+    "@jupyterlab/coreutils": "^3.0.0",
+    "@jupyterlab/statusbar": "^1.0.0",
+    "jupyterlab-topbar": "^0.4.0",
+    "jupyterlab-system-monitor-base": "^0.4.0"
+  },
+  "devDependencies": {
+    "husky": "^3.0.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0",
+    "rimraf": "^2.6.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "~3.5.1"
+  },
+  "lint-staged": {
+    "**/*{.ts,.tsx,.css,.json,.md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "jupyterlab": {
+    "extension": true,
+    "schemaDir": "schema",
+    "discovery": {
+      "server": {
+        "managers": [
+          "pip"
+        ],
+        "base": {
+          "name": "nbresuse"
+        }
+      }
+    }
+  }
+}
