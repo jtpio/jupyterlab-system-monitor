@@ -58,7 +58,6 @@ class MemoryBar extends React.Component<IMemoryBarProps, IMemoryBarState> {
             min={0.0}
             max={1.0}
             limit={N_BUFFER}
-            width={250}
             margin={0}
           >
             <SparklinesLine
@@ -85,6 +84,7 @@ interface IMemoryUsageProps {
   text: string;
   values: number[];
   percentage: number | null;
+  style?: Object;
 }
 
 interface IMemoryUsageState {
@@ -103,17 +103,17 @@ export class MemoryUsageComponent extends React.Component<
     return (
       <div
         className="jp-MemoryContainer"
-        style={this.props.percentage && { width: "200px" }}
+        style={this.props.style}
       >
         <div className="jp-MemoryText">{this.props.label}</div>
-        <div className="jp-MemoryWrapper">
-          {this.props.percentage && (
+          {this.props.percentage !== null && (
+            <div className="jp-MemoryWrapper">
             <MemoryBar
               values={this.props.values}
               percentage={this.props.percentage}
             />
+            </div>
           )}
-        </div>
         <div className="jp-MemoryText">{this.props.text}</div>
       </div>
     );

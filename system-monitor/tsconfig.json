@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfigbase",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "src",
+    "target": "esnext"
+  },
+  "include": ["src/*"],
+  "references": [
+    {
+      "path": "../system-monitor-base"
+    }
+  ]
+}

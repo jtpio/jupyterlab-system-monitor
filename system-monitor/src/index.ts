@@ -7,7 +7,9 @@ import { ISettingRegistry } from "@jupyterlab/coreutils";
 
 import { ITopBar } from "jupyterlab-topbar";
 
-import { MemoryView } from "./memoryView";
+import { MemoryView } from "jupyterlab-system-monitor-base";
+
+import "jupyterlab-system-monitor-base/style/index.css";
 
 import "../style/index.css";
 
