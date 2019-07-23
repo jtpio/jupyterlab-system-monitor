@@ -158,7 +158,8 @@ class MemoryModel extends MemoryUsage.Model {
 }
 
 interface IMemoryViewProps {
-  refreshRate: number;
+  refreshRate?: number;
+  label?: string;
 }
 
 interface IMemoryViewState extends IMemoryUsageProps {}
@@ -169,9 +170,9 @@ export class MemoryView extends React.Component<
 > {
   constructor(props: IMemoryViewProps) {
     super(props);
-    const { refreshRate } = props;
+    const { refreshRate, label } = props;
     this.state = {
-      label: "Mem:",
+      label: label,
       text: "0 / 0 B",
       values: [],
       percentage: null
@@ -218,7 +219,7 @@ export class MemoryView extends React.Component<
 }
 
 export namespace MemoryView {
-  export function createMemoryView(refreshRate: number) {
-    return ReactWidget.create(<MemoryView refreshRate={refreshRate} />);
+  export function createMemoryView(refreshRate: number, label: string) {
+    return ReactWidget.create(<MemoryView refreshRate={refreshRate} label={label} />);
   }
 }
