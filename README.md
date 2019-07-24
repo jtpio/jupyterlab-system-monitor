@@ -43,5 +43,6 @@ python -m pip install nbresuse
 jupyter labextension install jupyterlab-topbar-extension
 
 # local install of the extension
-jupyter labextension install .
+jupyter labextension link system-monitor-base
+jupyter labextension install system-monitor
 ```

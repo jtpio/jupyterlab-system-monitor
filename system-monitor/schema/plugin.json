@@ -9,6 +9,14 @@
       "description": "Refresh Rate to sync metrics data",
       "default": 5000,
       "type": "number"
+    },
+    "memory": {
+      "title": "Memory Settings",
+      "description": "Settings for the memory indicator",
+      "default": {
+        "label": "Mem: "
+      },
+      "type": "object"
     }
   },
   "additionalProperties": false,
