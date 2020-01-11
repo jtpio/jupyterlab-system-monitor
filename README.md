@@ -29,6 +29,35 @@ pip install nbresuse
 jupyter labextension install jupyterlab-topbar-extension jupyterlab-system-monitor
 ```
 
+## Configuration
+
+### Graphic Display
+
+You can set the memory limit (but not enforce it) to display the indicator in the top bar.
+
+For more info, check the [memory limit](https://github.com/yuvipanda/nbresuse#memory-limit) in the [nbresuse](https://github.com/yuvipanda/nbresuse) repository.
+
+Edit `~/.jupyter/jupyter_notebook_config.py`:
+
+``` python
+c = get_config()
+
+c.NotebookApp.ResourceUseDisplay.mem_limit = Size_of_GB *1024*1024*1024
+```
+
+Or use the command line option:
+
+```bash
+# POSIX shell
+jupyter lab --NotebookApp.ResourceUseDisplay.mem_limit=$(( Size_of_GB *1024*1024*1024))
+```
+
+### Advanced Settings
+
+You can change the label and refresh rate in JupyterLab's advanced settings editor:
+
+![jupyterlab_setting](./doc/setting.png)
+
 ## Development
 
 ```bash
