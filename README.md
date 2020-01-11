@@ -33,19 +33,19 @@ jupyter labextension install jupyterlab-topbar-extension jupyterlab-system-monit
 
 ### Graphic Display
 
-You can set memory limit(but not enforce it) to display graphic. 
+You can set the memory limit (but not enforce it) to display the indicator in the top bar.
 
-more info : [nbresuse - memory limit](https://github.com/yuvipanda/nbresuse#memory-limit)
+For more info, check the [memory limit](https://github.com/yuvipanda/nbresuse#memory-limit) in the [nbresuse](https://github.com/yuvipanda/nbresuse) repository.
 
 Edit `~/.jupyter/jupyter_notebook_config.py`:
 
 ``` python
 c = get_config()
 
-c.NotebookApp.ResourceUseDisplay.mem_limit= Size_of_GB *1024*1024*1024
+c.NotebookApp.ResourceUseDisplay.mem_limit = Size_of_GB *1024*1024*1024
 ```
 
-Or, use command's config option
+Or use the command line option:
 
 ```bash
 # POSIX shell
@@ -54,7 +54,7 @@ jupyter lab --NotebookApp.ResourceUseDisplay.mem_limit=$(( Size_of_GB *1024*1024
 
 ### Advanced Settings
 
-You can change label and refresh rate in jupyterlab's advanced settings editor.
+You can change the label and refresh rate in JupyterLab's advanced settings editor:
 
 ![jupyterlab_setting](./doc/setting.png)
 
