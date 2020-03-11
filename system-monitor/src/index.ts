@@ -3,9 +3,9 @@ import {
   JupyterFrontEndPlugin
 } from "@jupyterlab/application";
 
-import { ISettingRegistry } from "@jupyterlab/coreutils";
+import { ISettingRegistry } from "@jupyterlab/settingregistry";
 
-import { JSONObject } from "@phosphor/coreutils";
+import { JSONObject } from "@lumino/coreutils";
 
 import { ITopBar } from "jupyterlab-topbar";
 

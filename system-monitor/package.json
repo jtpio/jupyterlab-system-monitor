@@ -32,20 +32,20 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^1.0.0",
-    "@jupyterlab/coreutils": "^3.0.0",
-    "@jupyterlab/statusbar": "^1.0.0",
-    "jupyterlab-topbar": "^0.4.0",
+    "@jupyterlab/application": "^2.0.0",
+    "@jupyterlab/statusbar": "^2.0.0",
+    "@jupyterlab/settingregistry": "^2.0.0",
+    "jupyterlab-topbar": "^0.5.0",
     "jupyterlab-system-monitor-base": "^0.4.0"
   },
   "devDependencies": {
     "husky": "^3.0.0",
-    "lint-staged": "^8.1.5",
-    "prettier": "^1.17.0",
-    "rimraf": "^2.6.1",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "~3.5.1"
+    "tslint-plugin-prettier": "^2.1.0",
+    "typescript": "~3.8.1"
   },
   "lint-staged": {
     "**/*{.ts,.tsx,.css,.json,.md}": [
