@@ -32,15 +32,15 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/apputils": "^1.0.0",
-    "@jupyterlab/statusbar": "^1.0.0",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
+    "@jupyterlab/apputils": "^2.0.0",
+    "@jupyterlab/statusbar": "^2.0.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-sparklines": "^1.7.0"
   },
   "devDependencies": {
-    "@types/react": "^16.8.1",
-    "@types/react-dom": "^16.8.1",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
     "@types/react-sparklines": "^1.7.0",
     "husky": "^3.0.0",
     "lint-staged": "^8.1.5",
@@ -48,7 +48,7 @@
     "rimraf": "^2.6.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "~3.5.1"
+    "typescript": "~3.8.1"
   },
   "lint-staged": {
     "**/*{.ts,.tsx,.css,.json,.md}": [
