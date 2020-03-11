@@ -2,8 +2,8 @@ name: jupyterlab-system-monitor
 channels:
 - conda-forge
 dependencies:
-- python=3.7
-- jupyterlab=1.0
-- nodejs=10
+- python=3
+- jupyterlab=2
+- nodejs
 - pip:
   - nbresuse==0.3.0

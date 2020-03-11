@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-system-monitor-base",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Base components for the jupyterlab-system-monitor extension",
   "keywords": [
     "jupyter",
