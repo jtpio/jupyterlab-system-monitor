@@ -4,15 +4,37 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "link": "lerna run link",
-    "install": "lerna run link && jupyter labextension install jupyterlab-topbar-extension"
+    "link": "lerna run link && jupyter labextension install jupyterlab-topbar-extension",
+    "lint": "jlpm run eslint && jlpm run prettier",
+    "lint:check": "jlpm run eslint:check && jlpm run prettier:check",
+    "eslint": "eslint . --ext .ts,.tsx --fix",
+    "eslint:check": "eslint . --ext .ts,.tsx",
+    "prettier": "prettier --write \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\"",
+    "prettier:check": "prettier --list-different \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\""
   },
   "workspaces": {
     "packages": [
       "packages/*"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-jsdoc": "^22.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "husky": "^3.0.0",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.0.8",
+    "prettier": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "~3.8.1"
   }
 }
