@@ -27,7 +27,7 @@ jobs:
       run: |
         jlpm
         jlpm run build
-        jlpm run install
+        jlpm run link
 
     - name: Browser check
       run: python -m jupyterlab.browser_check
