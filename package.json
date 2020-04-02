@@ -4,15 +4,28 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "link": "lerna run link",
-    "install": "lerna run link && jupyter labextension install jupyterlab-topbar-extension"
+    "link": "lerna run link && jupyter labextension install jupyterlab-topbar-extension",
+    "lint": "lerna run eslint && jlpm run prettier",
+    "lint:check": "lerna run eslint:check && jlpm run prettier:check",
+    "prettier": "prettier --write \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\"",
+    "prettier:check": "prettier --list-different \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\""
   },
   "workspaces": {
     "packages": [
       "packages/*"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "lerna": "^3.20.2",
+    "husky": "^3.0.0",
+    "lint-staged": "^10.0.8",
+    "prettier": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "~3.8.1"
   }
 }

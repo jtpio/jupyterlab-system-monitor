@@ -46,7 +46,7 @@ For more info, check the [memory limit](https://github.com/yuvipanda/nbresuse#me
 
 Edit `~/.jupyter/jupyter_notebook_config.py`:
 
-``` python
+```python
 c = get_config()
 
 c.NotebookApp.ResourceUseDisplay.mem_limit = Size_of_GB *1024*1024*1024
@@ -78,6 +78,6 @@ jlpm
 # Build Typescript source
 jlpm run build
 
-# Link and install the extensions
-jlpm run install
+# Link the local extensions
+jlpm run link
 ```

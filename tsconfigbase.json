@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
@@ -17,7 +16,6 @@
     "preserveWatchOutput": true,
     "resolveJsonModule": true,
     "strictNullChecks": false,
-    "target": "es2017"
-  },
-  "include": ["src/**/*"]
+    "target": "esnext"
+  }
 }
