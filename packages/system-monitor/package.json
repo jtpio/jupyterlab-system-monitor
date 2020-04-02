@@ -27,8 +27,6 @@
   "scripts": {
     "build": "tsc",
     "link": "jupyter labextension link . --no-build",
-    "eslint": "eslint . --ext .ts,.tsx --fix",
-    "eslint:check": "eslint . --ext .ts,.tsx",
     "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build",
     "watch": "tsc -w"
@@ -41,13 +39,6 @@
     "jupyterlab-system-monitor-base": "^0.5.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.21.0",
-    "@typescript-eslint/parser": "^2.21.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-jsdoc": "^22.0.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.3",
     "rimraf": "^2.6.1",
     "typescript": "~3.8.1"
   },
