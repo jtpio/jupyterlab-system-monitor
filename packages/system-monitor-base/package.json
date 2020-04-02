@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "link": "jupyter labextension link .",
     "prettier": "prettier --write '**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}'",
     "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build",
@@ -34,13 +35,13 @@
   "dependencies": {
     "@jupyterlab/apputils": "^2.0.0",
     "@jupyterlab/statusbar": "^2.0.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
     "react-sparklines": "^1.7.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
+    "@types/react": "~16.9.0",
+    "@types/react-dom": "~16.9.0",
     "@types/react-sparklines": "^1.7.0",
     "husky": "^3.0.0",
     "lint-staged": "^8.1.5",

@@ -69,16 +69,15 @@ You can change the label and refresh rate in JupyterLab's advanced settings edit
 
 ```bash
 # create a new conda environment
-conda create -n jupyterlab-system-monitor jupyterlab nodejs
+conda create -n jupyterlab-system-monitor jupyterlab nodejs nbresuse
 conda activate jupyterlab-system-monitor
 
-# package to retrieve the system metrics
-python -m pip install nbresuse
+# Install dependencies
+jlpm
 
-# required to place indicators in the top area
-jupyter labextension install jupyterlab-topbar-extension
+# Build Typescript source
+jlpm run build
 
-# local install of the extension
-jupyter labextension link system-monitor-base
-jupyter labextension install system-monitor
+# Link and install the extensions
+jlpm run install
 ```
