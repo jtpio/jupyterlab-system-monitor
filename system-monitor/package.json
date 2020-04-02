@@ -64,7 +64,8 @@
     "discovery": {
       "server": {
         "managers": [
-          "pip"
+          "pip",
+          "conda"
         ],
         "base": {
           "name": "nbresuse"

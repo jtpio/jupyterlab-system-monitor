@@ -30,6 +30,12 @@ pip install nbresuse
 jupyter labextension install jupyterlab-topbar-extension jupyterlab-system-monitor
 ```
 
+`nbresuse` can also be installed with `conda`:
+
+```bash
+conda install -c conda-forge nbresuse
+```
+
 ## Configuration
 
 ### Graphic Display
