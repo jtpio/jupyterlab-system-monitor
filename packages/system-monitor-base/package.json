@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "link": "jupyter labextension link .",
+    "link": "jupyter labextension link . --no-build",
     "prettier": "prettier --write '**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}'",
     "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build",
