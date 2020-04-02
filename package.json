@@ -1,11 +1,18 @@
 {
   "private": true,
-  "workspaces": [
-    "system-monitor",
-    "system-monitor-base"
-  ],
   "scripts": {
-    "build": "tsc --build system-monitor-base system-monitor"
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "clean": "lerna run clean",
+    "link": "lerna run link",
+    "install": "lerna run link && jupyter labextension install jupyterlab-topbar-extension"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "lerna": "^3.20.2"
   }
 }
-
