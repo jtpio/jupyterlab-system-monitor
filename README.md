@@ -13,7 +13,6 @@ This extension was originally developed as part of the [jupyterlab-topbar](https
 
 ## TODO
 
-- Add CPU usage
 - Add Network I/O
 - Expose more settings
 

@@ -1,28 +1,28 @@
 import { ReactWidget } from '@jupyterlab/apputils';
 
-import React, { useState, useEffect, ReactElement } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { IndicatorComponent } from './indicator';
 
 import { ResourceUsage } from './model';
 
-const MemoryViewComponent = ({
+/**
+ * A CpuView component to display CPU usage.
+ */
+const CpuViewComponent = ({
   model,
   label,
 }: {
   model: ResourceUsage.Model;
   label: string;
-}): ReactElement => {
+}): React.ReactElement => {
   const [text, setText] = useState('');
   const [values, setValues] = useState([]);
 
   const update = (): void => {
-    const { memoryLimit, currentMemory, units } = model;
-    const precision = ['B', 'KB', 'MB'].indexOf(units) > 0 ? 0 : 2;
-    const newText = `${currentMemory.toFixed(precision)} ${
-      memoryLimit ? '/ ' + memoryLimit.toFixed(precision) : ''
-    } ${units}`;
-    const newValues = model.values.map((value) => value.memoryPercent);
+    const { currentCpuPercent } = model;
+    const newValues = model.values.map((value) => value.cpuPercent);
+    const newText = `${(currentCpuPercent * 100).toFixed(0)}%`;
     setText(newText);
     setValues(newValues);
   };
@@ -38,25 +38,23 @@ const MemoryViewComponent = ({
     <IndicatorComponent
       values={values}
       label={label}
-      color={'green'}
+      color={'blue'}
       text={text}
     />
   );
 };
 
-export namespace MemoryView {
+export namespace CpuView {
   /**
-   * Create a new MemoryView React Widget.
+   * Create a new CpuView React Widget.
    *
    * @param model The resource usage model.
    * @param label The label next to the component.
    */
-  export const createMemoryView = (
+  export const createCpuView = (
     model: ResourceUsage.Model,
     label: string
   ): ReactWidget => {
-    return ReactWidget.create(
-      <MemoryViewComponent model={model} label={label} />
-    );
+    return ReactWidget.create(<CpuViewComponent model={model} label={label} />);
   };
 }
