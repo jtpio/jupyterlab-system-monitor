@@ -17,6 +17,14 @@
         "label": "Mem: "
       },
       "type": "object"
+    },
+    "cpu": {
+      "title": "CPU Settings",
+      "description": "Settings for the CPU indicator",
+      "default": {
+        "label": "CPU: "
+      },
+      "type": "object"
     }
   },
   "additionalProperties": false,
