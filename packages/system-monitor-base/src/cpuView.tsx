@@ -38,7 +38,7 @@ const CpuViewComponent = ({
     <IndicatorComponent
       values={values}
       label={label}
-      color={'blue'}
+      color={'#0072B3'}
       text={text}
     />
   );
