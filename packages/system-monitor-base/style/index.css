@@ -9,8 +9,10 @@
 
 .jp-IndicatorText {
   display: flex;
+  min-width: 35px;
   flex-direction: column;
   justify-content: center;
+  text-align: right;
   white-space: nowrap;
   overflow: hidden;
 }

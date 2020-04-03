@@ -144,7 +144,10 @@ export namespace ResourceUsage {
       this._memoryLimit = memoryLimit
         ? memoryLimit / Private.MEMORY_UNIT_LIMITS[units]
         : null;
-      this._currentCpuPercent = value.cpu_percent / 100;
+      this._currentCpuPercent =
+        value.cpu_percent === undefined
+          ? 0
+          : Math.min(1, value.cpu_percent / 100);
 
       const memoryPercent = this.memoryLimit
         ? Math.min(this._currentMemory / this.memoryLimit, 1)
