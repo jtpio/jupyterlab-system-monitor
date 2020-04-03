@@ -52,6 +52,7 @@ c = get_config()
 c.NotebookApp.ResourceUseDisplay.mem_limit = <size_in_GB> *1024*1024*1024
 
 # cpu
+c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True
 c.NotebookApp.ResourceUseDisplay.cpu_limit = <number_of_cpus>
 ```
 
@@ -59,6 +60,7 @@ For example:
 
 ```python
 c.NotebookApp.ResourceUseDisplay.mem_limit = 4294967296
+c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True
 c.NotebookApp.ResourceUseDisplay.cpu_limit = 2
 ```
 
