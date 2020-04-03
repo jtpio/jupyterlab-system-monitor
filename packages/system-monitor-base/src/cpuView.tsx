@@ -1,6 +1,6 @@
 import { ReactWidget } from '@jupyterlab/apputils';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ReactElement } from 'react';
 
 import { IndicatorComponent } from './indicator';
 
@@ -15,7 +15,7 @@ const CpuViewComponent = ({
 }: {
   model: ResourceUsage.Model;
   label: string;
-}): React.ReactElement => {
+}): ReactElement => {
   const [text, setText] = useState('');
   const [values, setValues] = useState([]);
 
@@ -44,6 +44,9 @@ const CpuViewComponent = ({
   );
 };
 
+/**
+ * A namespace for CpuView statics.
+ */
 export namespace CpuView {
   /**
    * Create a new CpuView React Widget.

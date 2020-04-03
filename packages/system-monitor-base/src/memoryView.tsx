@@ -38,7 +38,7 @@ const MemoryViewComponent = ({
     <IndicatorComponent
       values={values}
       label={label}
-      color={'green'}
+      color={'#00B35B'}
       text={text}
     />
   );
