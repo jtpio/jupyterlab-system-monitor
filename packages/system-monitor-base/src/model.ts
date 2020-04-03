@@ -48,13 +48,15 @@ export namespace ResourceUsage {
           return;
         }
         if (phase === 'rejected') {
-          const oldMetricsAvailable = this._metricsAvailable;
-          this._metricsAvailable = false;
+          const oldMemoryAvailable = this._memoryAvailable;
+          const oldCpuAvailable = this._cpuAvailable;
+          this._memoryAvailable = false;
+          this._cpuAvailable = false;
           this._currentMemory = 0;
           this._memoryLimit = null;
           this._units = 'B';
 
-          if (oldMetricsAvailable) {
+          if (oldMemoryAvailable || oldCpuAvailable) {
             this._changed.emit();
           }
           return;
@@ -63,10 +65,17 @@ export namespace ResourceUsage {
     }
 
     /**
-     * Whether the metrics server extension is available.
+     * Whether the memory metric is available.
      */
-    get metricsAvailable(): boolean {
-      return this._metricsAvailable;
+    get memoryAvailable(): boolean {
+      return this._memoryAvailable;
+    }
+
+    /**
+     * Whether the cpu metric is available.
+     */
+    get cpuAvailable(): boolean {
+      return this._cpuAvailable;
     }
 
     /**
@@ -127,7 +136,8 @@ export namespace ResourceUsage {
       value: Private.IMetricRequestResult | null
     ): void {
       if (value === null) {
-        this._metricsAvailable = false;
+        this._memoryAvailable = false;
+        this._cpuAvailable = false;
         this._currentMemory = 0;
         this._memoryLimit = null;
         this._units = 'B';
@@ -137,28 +147,30 @@ export namespace ResourceUsage {
       const numBytes = value.rss;
       const memoryLimit = value.limits.memory ? value.limits.memory.rss : null;
       const [currentMemory, units] = Private.convertToLargestUnit(numBytes);
-
-      this._metricsAvailable = true;
+      this._memoryAvailable = numBytes !== undefined;
       this._currentMemory = currentMemory;
       this._units = units;
       this._memoryLimit = memoryLimit
         ? memoryLimit / Private.MEMORY_UNIT_LIMITS[units]
         : null;
-      this._currentCpuPercent =
-        value.cpu_percent === undefined
-          ? 0
-          : Math.min(1, value.cpu_percent / 100);
 
       const memoryPercent = this.memoryLimit
         ? Math.min(this._currentMemory / this.memoryLimit, 1)
         : null;
+
+      const cpuPercent = value.cpu_percent;
+      this._cpuAvailable = cpuPercent !== undefined;
+      this._currentCpuPercent = this._cpuAvailable
+        ? Math.min(1, cpuPercent / 100)
+        : 0;
 
       this._values.push({ memoryPercent, cpuPercent: this._currentCpuPercent });
       this._values.shift();
       this._changed.emit(void 0);
     }
 
-    private _metricsAvailable = false;
+    private _memoryAvailable = false;
+    private _cpuAvailable = false;
     private _currentMemory = 0;
     private _currentCpuPercent = 0;
     private _memoryLimit: number | null = null;

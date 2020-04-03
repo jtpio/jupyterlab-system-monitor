@@ -36,6 +36,7 @@ const MemoryViewComponent = ({
 
   return (
     <IndicatorComponent
+      enabled={model.memoryAvailable}
       values={values}
       label={label}
       color={'#00B35B'}

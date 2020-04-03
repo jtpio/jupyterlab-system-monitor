@@ -77,11 +77,13 @@ const IndicatorBar = ({
  *
  */
 export const IndicatorComponent = ({
+  enabled,
   values,
   label,
   color,
   text,
 }: {
+  enabled: boolean;
   values: number[];
   label: string;
   color: string;
@@ -89,18 +91,20 @@ export const IndicatorComponent = ({
 }): ReactElement => {
   const percentage = values[values.length - 1];
   return (
-    <div className="jp-IndicatorContainer">
-      <div className="jp-IndicatorText">{label}</div>
-      {percentage !== null && (
-        <div className="jp-IndicatorWrapper">
-          <IndicatorBar
-            values={values}
-            percentage={percentage}
-            baseColor={color}
-          />
-        </div>
-      )}
-      <div className="jp-IndicatorText">{text}</div>
-    </div>
+    enabled && (
+      <div className="jp-IndicatorContainer">
+        <div className="jp-IndicatorText">{label}</div>
+        {percentage !== null && (
+          <div className="jp-IndicatorWrapper">
+            <IndicatorBar
+              values={values}
+              percentage={percentage}
+              baseColor={color}
+            />
+          </div>
+        )}
+        <div className="jp-IndicatorText">{text}</div>
+      </div>
+    )
   );
 };

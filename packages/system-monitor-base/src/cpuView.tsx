@@ -36,6 +36,7 @@ const CpuViewComponent = ({
 
   return (
     <IndicatorComponent
+      enabled={model.cpuAvailable}
       values={values}
       label={label}
       color={'#0072B3'}
