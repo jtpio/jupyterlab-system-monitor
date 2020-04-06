@@ -65,6 +65,14 @@ export namespace ResourceUsage {
     }
 
     /**
+     * A promise that resolves after the next request.
+     */
+    async refresh(): Promise<void> {
+      await this._poll.refresh();
+      await this._poll.tick;
+    }
+
+    /**
      * Whether the memory metric is available.
      */
     get memoryAvailable(): boolean {

@@ -69,10 +69,12 @@ const extension: JupyterFrontEndPlugin<void> = {
     }
 
     const model = new ResourceUsage.Model({ refreshRate });
-    const cpu = CpuView.createCpuView(model, cpuLabel);
+    await model.refresh();
+    if (model.cpuAvailable) {
+      const cpu = CpuView.createCpuView(model, cpuLabel);
+      topBar.addItem('cpu', cpu);
+    }
     const memory = MemoryView.createMemoryView(model, memoryLabel);
-
-    topBar.addItem('cpu', cpu);
     topBar.addItem('memory', memory);
   },
 };
