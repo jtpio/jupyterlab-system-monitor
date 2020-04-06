@@ -4,6 +4,5 @@ channels:
 dependencies:
 - python=3
 - jupyterlab=2
+- nbresuse=0.3
 - nodejs
-- pip:
-  - nbresuse==0.3.0
