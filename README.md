@@ -13,7 +13,6 @@ This extension was originally developed as part of the [jupyterlab-topbar](https
 
 ## TODO
 
-- Add CPU usage
 - Add Network I/O
 - Expose more settings
 
@@ -40,7 +39,7 @@ conda install -c conda-forge nbresuse
 
 ### Graphic Display
 
-You can set the memory limit (but not enforce it) to display the indicator in the top bar.
+You can set the memory and cpu limits (but not enforce it) to display the indicator in the top bar.
 
 For more info, check the [memory limit](https://github.com/yuvipanda/nbresuse#memory-limit) in the [nbresuse](https://github.com/yuvipanda/nbresuse) repository.
 
@@ -49,14 +48,28 @@ Edit `~/.jupyter/jupyter_notebook_config.py`:
 ```python
 c = get_config()
 
-c.NotebookApp.ResourceUseDisplay.mem_limit = Size_of_GB *1024*1024*1024
+# memory
+c.NotebookApp.ResourceUseDisplay.mem_limit = <size_in_GB> *1024*1024*1024
+
+# cpu
+c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True
+c.NotebookApp.ResourceUseDisplay.cpu_limit = <number_of_cpus>
+```
+
+For example:
+
+```python
+c.NotebookApp.ResourceUseDisplay.mem_limit = 4294967296
+c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True
+c.NotebookApp.ResourceUseDisplay.cpu_limit = 2
 ```
 
 Or use the command line option:
 
 ```bash
 # POSIX shell
-jupyter lab --NotebookApp.ResourceUseDisplay.mem_limit=$(( Size_of_GB *1024*1024*1024))
+jupyter lab --NotebookApp.ResourceUseDisplay.mem_limit=$(( size_in_GB *1024*1024*1024)) \
+            --NotebookApp.ResourceUseDisplay.cpu_limit=$(( number_of_cpus ))
 ```
 
 ### Advanced Settings
