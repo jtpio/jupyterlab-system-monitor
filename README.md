@@ -69,6 +69,7 @@ Or use the command line option:
 ```bash
 # POSIX shell
 jupyter lab --NotebookApp.ResourceUseDisplay.mem_limit=$(( size_in_GB *1024*1024*1024)) \
+            --NotebookApp.ResourceUseDisplay.track_cpu_percent=True \
             --NotebookApp.ResourceUseDisplay.cpu_limit=$(( number_of_cpus ))
 ```
 
