@@ -19,6 +19,7 @@ This extension was originally developed as part of the [jupyterlab-topbar](https
 ## Prerequisites
 
 - JupyterLab 1.0+
+- Node.js
 
 ## Installation
 
@@ -33,6 +34,12 @@ jupyter labextension install jupyterlab-topbar-extension jupyterlab-system-monit
 
 ```bash
 conda install -c conda-forge nbresuse
+```
+
+Note: Node.js is required to install JupyterLab extensions. It can be installed with `conda`:
+
+```bash
+conda install -c conda-forge nodejs
 ```
 
 Note: This extension is not compatible with `nbresuse==0.3.4`.
