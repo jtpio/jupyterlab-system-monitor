@@ -25,17 +25,17 @@ This extension was originally developed as part of the [jupyterlab-topbar](https
 This extension requires the `nbresuse` package and the `jupyterlab-topbar-extension` extension for JupyterLab.
 
 ```bash
-pip install nbresuse==0.3.3
+pip install nbresuse
 jupyter labextension install jupyterlab-topbar-extension jupyterlab-system-monitor
 ```
 
 `nbresuse` can also be installed with `conda`:
 
 ```bash
-conda install -c conda-forge nbresuse=0.3.3
+conda install -c conda-forge nbresuse
 ```
 
-Note: This extension is not (yet) compatible with `nbresuse>=0.3.4`.
+Note: This extension is not compatible with `nbresuse==0.3.4`.
 
 ## Configuration
 
