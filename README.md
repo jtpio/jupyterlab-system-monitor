@@ -92,7 +92,7 @@ You can change the label and refresh rate in JupyterLab's advanced settings edit
 
 ```bash
 # create a new conda environment
-conda create -n jupyterlab-system-monitor jupyterlab nodejs nbresuse
+conda create -n jupyterlab-system-monitor -c conda-forge jupyterlab nodejs nbresuse
 conda activate jupyterlab-system-monitor
 
 # Install dependencies
