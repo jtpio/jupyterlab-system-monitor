@@ -113,8 +113,8 @@ const topbar: JupyterFrontEndPlugin<void> = {
       const settings = await settingRegistry.load(main.id);
       const cpuSettings = settings.get('cpu').composite as IResourceSettings;
       cpuLabel = cpuSettings.label;
-      const memorySettings =
-        settings.get('memory').composite as IResourceSettings;
+      const memorySettings = settings.get('memory')
+        .composite as IResourceSettings;
       memoryLabel = memorySettings.label;
     }
 
@@ -219,5 +219,4 @@ const panel: JupyterFrontEndPlugin<void> = {
  * Export the plugins as default.
  */
 const plugins: JupyterFrontEndPlugin<any>[] = [main, topbar, panel];
-
 export default plugins;
