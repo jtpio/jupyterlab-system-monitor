@@ -129,6 +129,13 @@ export namespace ResourceUsage {
     }
 
     /**
+     * Get the list of kernel metrics.
+     */
+    get kernels(): Private.IKernelMetric[] {
+      return this._kernels;
+    }
+
+    /**
      * Dispose of the memory usage model.
      */
     dispose(): void {
@@ -174,6 +181,10 @@ export namespace ResourceUsage {
 
       this._values.push({ memoryPercent, cpuPercent: this._currentCpuPercent });
       this._values.shift();
+
+      // TODO: add kernel metrics
+      this._kernels = value.kernels;
+
       this._changed.emit(void 0);
     }
 
@@ -181,6 +192,7 @@ export namespace ResourceUsage {
     private _cpuAvailable = false;
     private _currentMemory = 0;
     private _currentCpuPercent = 0;
+    private _kernels: Private.IKernelMetric[] = [];
     private _memoryLimit: number | null = null;
     private _poll: Poll<Private.IMetricRequestResult | null>;
     private _units: MemoryUnit = 'B';
@@ -294,6 +306,21 @@ namespace Private {
   const METRIC_URL = URLExt.join(SERVER_CONNECTION_SETTINGS.baseUrl, 'metrics');
 
   /**
+   * The interface for kernel metrics.
+   */
+  export interface IKernelMetric {
+    /**
+     * The kernel id.
+     */
+    id: string;
+
+    /**
+     * The memory usage.
+     */
+    rss: number;
+  }
+
+  /**
    * The shape of a response from the metrics server extension.
    */
   export interface IMetricRequestResult {
@@ -310,6 +337,7 @@ namespace Private {
         warn?: number;
       };
     };
+    kernels: IKernelMetric[];
   }
 
   /**

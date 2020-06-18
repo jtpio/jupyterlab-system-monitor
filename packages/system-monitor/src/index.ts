@@ -3,7 +3,11 @@ import {
   JupyterFrontEndPlugin,
 } from '@jupyterlab/application';
 
+import { MainAreaWidget } from '@jupyterlab/apputils';
+
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
+
+import { buildIcon } from '@jupyterlab/ui-components';
 
 import { JSONObject } from '@lumino/coreutils';
 
@@ -13,6 +17,8 @@ import {
   MemoryView,
   ResourceUsage,
   CpuView,
+  MetricsView,
+  IResourceUsage,
 } from 'jupyterlab-system-monitor-base';
 
 import 'jupyterlab-system-monitor-base/style/index.css';
@@ -42,25 +48,58 @@ interface IResourceSettings extends JSONObject {
 }
 
 /**
- * Initialization data for the jupyterlab-system-monitor extension.
+ * The command ids used by the system-monitor extension.
  */
-const extension: JupyterFrontEndPlugin<void> = {
+export namespace CommandIDs {
+  /**
+   * Open the panel with detailed metrics
+   */
+  export const openPanel = 'system-monitor:open-panel';
+}
+
+/**
+ * Initialization data for the system-monitor main plugin.
+ */
+const main: JupyterFrontEndPlugin<IResourceUsage> = {
   id: 'jupyterlab-system-monitor:plugin',
   autoStart: true,
-  requires: [ITopBar],
+  optional: [ISettingRegistry],
+  provides: IResourceUsage,
+  activate: async (app: JupyterFrontEnd, settingRegistry: ISettingRegistry) => {
+    let refreshRate = DEFAULT_REFRESH_RATE;
+
+    if (settingRegistry) {
+      const settings = await settingRegistry.load(main.id);
+      refreshRate = settings.get('refreshRate').composite as number;
+    }
+
+    const model = new ResourceUsage.Model({ refreshRate });
+    await model.refresh();
+    return {
+      model,
+    };
+  },
+};
+
+/**
+ * Initialization data for the system-monitor topbar plugin.
+ */
+const topbar: JupyterFrontEndPlugin<void> = {
+  id: 'jupyterlab-system-monitor:topbar',
+  autoStart: true,
+  requires: [IResourceUsage, ITopBar],
   optional: [ISettingRegistry],
   activate: async (
     app: JupyterFrontEnd,
+    resourceUsage: IResourceUsage,
     topBar: ITopBar,
-    settingRegistry: ISettingRegistry
+    settingRegistry: ISettingRegistry | null
   ) => {
-    let refreshRate = DEFAULT_REFRESH_RATE;
     let cpuLabel = DEFAULT_CPU_LABEL;
     let memoryLabel = DEFAULT_MEMORY_LABEL;
 
     if (settingRegistry) {
-      const settings = await settingRegistry.load(extension.id);
-      refreshRate = settings.get('refreshRate').composite as number;
+      const settings = await settingRegistry.load(topbar.id);
       const cpuSettings = settings.get('cpu').composite as IResourceSettings;
       cpuLabel = cpuSettings.label;
       const memorySettings =
@@ -68,8 +107,8 @@ const extension: JupyterFrontEndPlugin<void> = {
       memoryLabel = memorySettings.label;
     }
 
-    const model = new ResourceUsage.Model({ refreshRate });
-    await model.refresh();
+    const { model } = resourceUsage;
+    // add to the top bar
     if (model.cpuAvailable) {
       const cpu = CpuView.createCpuView(model, cpuLabel);
       topBar.addItem('cpu', cpu);
@@ -79,4 +118,39 @@ const extension: JupyterFrontEndPlugin<void> = {
   },
 };
 
-export default extension;
+/**
+ * Initialization data for the system-monitor panel plugin.
+ */
+const panel: JupyterFrontEndPlugin<void> = {
+  id: 'jupyterlab-system-monitor:panel',
+  autoStart: true,
+  requires: [IResourceUsage],
+  activate: async (app: JupyterFrontEnd, resourceUsage: IResourceUsage) => {
+    const { model } = resourceUsage;
+
+    // add commands to open the panel
+    const { commands, contextMenu } = app;
+    commands.addCommand(CommandIDs.openPanel, {
+      label: 'Show Metrics',
+      execute: (args) => {
+        const view = MetricsView.createMetricsView(model);
+        const widget = new MainAreaWidget({ content: view });
+        widget.title.label = 'Metrics';
+        widget.title.icon = buildIcon;
+        app.shell.add(widget, 'main', { mode: 'split-right' });
+      },
+    });
+
+    contextMenu.addItem({
+      command: CommandIDs.openPanel,
+      selector: '.jp-IndicatorContainer',
+    });
+  },
+};
+
+/**
+ * Export the plugins as default.
+ */
+const plugins: JupyterFrontEndPlugin<any>[] = [main, topbar, panel];
+
+export default plugins;
