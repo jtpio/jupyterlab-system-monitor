@@ -17,7 +17,6 @@ const MetricsViewComponent = ({
   const [kernels, setKernels] = useState([]);
 
   const update = (): void => {
-    console.log('update component here');
     setKernels(model.kernels);
   };
 

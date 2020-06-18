@@ -3,7 +3,12 @@ import {
   JupyterFrontEndPlugin,
 } from '@jupyterlab/application';
 
-import { MainAreaWidget } from '@jupyterlab/apputils';
+import {
+  MainAreaWidget,
+  Dialog,
+  showDialog,
+  ReactWidget,
+} from '@jupyterlab/apputils';
 
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
@@ -41,10 +46,16 @@ const DEFAULT_MEMORY_LABEL = 'Mem: ';
 const DEFAULT_CPU_LABEL = 'CPU: ';
 
 /**
+ * The default memory warning threshold.
+ */
+const DEFAULT_MEM_WARNING_THRESHOLD = 0.5;
+
+/**
  * An interface for resource settings.
  */
 interface IResourceSettings extends JSONObject {
   label: string;
+  warn?: number;
 }
 
 /**
@@ -99,7 +110,7 @@ const topbar: JupyterFrontEndPlugin<void> = {
     let memoryLabel = DEFAULT_MEMORY_LABEL;
 
     if (settingRegistry) {
-      const settings = await settingRegistry.load(topbar.id);
+      const settings = await settingRegistry.load(main.id);
       const cpuSettings = settings.get('cpu').composite as IResourceSettings;
       cpuLabel = cpuSettings.label;
       const memorySettings =
@@ -125,19 +136,31 @@ const panel: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab-system-monitor:panel',
   autoStart: true,
   requires: [IResourceUsage],
-  activate: async (app: JupyterFrontEnd, resourceUsage: IResourceUsage) => {
+  optional: [ISettingRegistry],
+  activate: async (
+    app: JupyterFrontEnd,
+    resourceUsage: IResourceUsage,
+    settingRegistry: ISettingRegistry | null
+  ) => {
     const { model } = resourceUsage;
+
+    let widget: MainAreaWidget<ReactWidget>;
 
     // add commands to open the panel
     const { commands, contextMenu } = app;
     commands.addCommand(CommandIDs.openPanel, {
       label: 'Show Metrics',
       execute: (args) => {
-        const view = MetricsView.createMetricsView(model);
-        const widget = new MainAreaWidget({ content: view });
-        widget.title.label = 'Metrics';
-        widget.title.icon = buildIcon;
-        app.shell.add(widget, 'main', { mode: 'split-right' });
+        if (!widget || widget.isDisposed) {
+          const view = MetricsView.createMetricsView(model);
+          widget = new MainAreaWidget({ content: view });
+          widget.id = 'jp-system-monitor-metrics';
+          widget.title.label = 'Metrics';
+          widget.title.icon = buildIcon;
+          widget.title.closable = true;
+          app.shell.add(widget, 'main', { mode: 'split-right' });
+        }
+        app.shell.activateById(widget.id);
       },
     });
 
@@ -145,6 +168,50 @@ const panel: JupyterFrontEndPlugin<void> = {
       command: CommandIDs.openPanel,
       selector: '.jp-IndicatorContainer',
     });
+
+    let memoryWarning = DEFAULT_MEM_WARNING_THRESHOLD;
+
+    if (settingRegistry) {
+      const settings = await settingRegistry.load(main.id);
+      const memory = settings.get('memory').composite as IResourceSettings;
+      memoryWarning = memory.warn;
+    }
+
+    let displayed = false;
+    const showWarning = async (): Promise<void> => {
+      const { values } = model;
+      const last = values.slice(values.length - 5);
+      const show = last.every((value) => value.memoryPercent >= memoryWarning);
+
+      // Do not show the dialog if:
+      // - no high memory usage
+      // - the dialog is already displayed
+      // - the metrics main area widget is already attached
+      if (!show || displayed || (widget && widget.isAttached)) {
+        return;
+      }
+
+      displayed = true;
+      const body = 'High memory usage';
+      const result = await showDialog({
+        title: 'High Memory Usage',
+        body,
+        buttons: [
+          Dialog.cancelButton({ label: 'Hide Warning' }),
+          Dialog.okButton({ label: 'Show Metrics' }),
+        ],
+      });
+      if (result.button.accept) {
+        commands.execute(CommandIDs.openPanel);
+      } else {
+        // set warning above 1 to disable the dialog
+        memoryWarning = 2;
+      }
+
+      displayed = false;
+    };
+
+    model.changed.connect(showWarning);
   },
 };
 
