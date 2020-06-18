@@ -192,7 +192,8 @@ const panel: JupyterFrontEndPlugin<void> = {
       }
 
       displayed = true;
-      const body = 'High memory usage';
+      const body =
+        'The current memory usage is high. Check the Kernel Metrics for more details.';
       const result = await showDialog({
         title: 'High Memory Usage',
         body,

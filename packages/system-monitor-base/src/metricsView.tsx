@@ -28,11 +28,30 @@ const MetricsViewComponent = ({
   }, [model]);
 
   return (
-    <>
-      {kernels.map((metric) => (
-        <MemoryViewComponent key={metric.id} model={model} label={metric.id} />
-      ))}
-    </>
+    <div className={'jp-SystemMonitorMetrics-panel'}>
+      <h2>Kernel Metrics</h2>
+      <ul className={'jp-RunningSessions-sectionList'}>
+        {kernels.map((metric) => {
+          return (
+            <li
+              key={metric.id}
+              title={`id: ${metric.id}`}
+              className={'jp-RunningSessions-item'}
+            >
+              <MemoryViewComponent model={model} label={'Kernel'} />
+              <button
+                className={'jp-RunningSessions-itemShutdown jp-mod-styled'}
+                onClick={(): void => {
+                  console.log('shut down kernel');
+                }}
+              >
+                SHUT&nbsp;DOWN
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
