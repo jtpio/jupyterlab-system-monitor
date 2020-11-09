@@ -52,7 +52,7 @@ You can set the memory and cpu limits (but not enforce it) to display the indica
 
 For more info, check the [memory limit](https://github.com/yuvipanda/nbresuse#memory-limit) in the [nbresuse](https://github.com/yuvipanda/nbresuse) repository.
 
-Edit `~/.jupyter/jupyter_notebook_config.py`:
+Edit `~/.jupyter/jupyter_notebook_config.py` (note: see [here](https://jupyter-notebook.readthedocs.io/en/stable/config.html#config-file-and-command-line-options) if you do not have a config file:
 
 ```python
 c = get_config()
