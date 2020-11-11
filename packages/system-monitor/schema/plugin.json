@@ -14,7 +14,8 @@
       "title": "Memory Settings",
       "description": "Settings for the memory indicator",
       "default": {
-        "label": "Mem: "
+        "label": "Mem: ",
+        "warn": 0.5
       },
       "type": "object"
     },

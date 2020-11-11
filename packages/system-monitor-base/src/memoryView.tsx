@@ -6,7 +6,7 @@ import { IndicatorComponent } from './indicator';
 
 import { ResourceUsage } from './model';
 
-const MemoryViewComponent = ({
+export const MemoryViewComponent = ({
   model,
   label,
 }: {

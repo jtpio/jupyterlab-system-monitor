@@ -33,8 +33,10 @@
   },
   "dependencies": {
     "@jupyterlab/application": "^2.0.0",
+    "@jupyterlab/apputils": "^2.0.0",
     "@jupyterlab/statusbar": "^2.0.0",
     "@jupyterlab/settingregistry": "^2.0.0",
+    "@jupyterlab/ui-components": "^2.0.0",
     "jupyterlab-topbar": "^0.5.0",
     "jupyterlab-system-monitor-base": "^0.6.0"
   },

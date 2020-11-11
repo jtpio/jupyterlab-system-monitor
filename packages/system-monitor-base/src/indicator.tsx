@@ -41,6 +41,7 @@ const IndicatorBar = ({
     setIsSparklines(!isSparklines);
   };
 
+  // TODO: make the percentage configurable
   const color =
     percentage > 0.5 ? (percentage > 0.8 ? 'red' : 'orange') : baseColor;
 
