@@ -36,7 +36,6 @@
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
-    "install:extension": "jupyter labextension develop --overwrite .",
     "prepare": "jlpm run clean && jlpm run build:prod",
     "watch": "run-p watch:src watch:labextension",
     "watch:labextension": "jupyter labextension watch .",
@@ -45,9 +44,8 @@
   "dependencies": {
     "@jupyterlab/application": "^3.0.0-rc.7",
     "@jupyterlab/settingregistry": "^3.0.0-rc.7",
-    "@jupyterlab/statusbar": "^3.0.0-rc.7",
     "jupyterlab-system-monitor-base": "^0.6.0",
-    "jupyterlab-topbar": "^0.5.0"
+    "jupyterlab-topbar": "^0.6.0"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.0.0-rc.7",

@@ -15,15 +15,13 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 # The name of the project
 name="jupyterlab-system-monitor"
 
-# Get our version
-with open(os.path.join(HERE, 'package.json')) as f:
-    version = json.load(f)['version']
+version = get_version(os.path.join(name, "_version.py"))
 
 lab_path = os.path.join(HERE, name, "labextension")
 
 # Representative files that should exist after a successful build
 jstargets = [
-    os.path.join(HERE, "lib", "index.js"),
+    os.path.join(HERE, "packages", "system-monitor", "lib", "index.js"),
     os.path.join(lab_path, "package.json"),
 ]
 

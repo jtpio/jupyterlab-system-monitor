@@ -32,17 +32,16 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/apputils": "^2.0.0",
-    "@jupyterlab/statusbar": "^2.0.0",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0",
+    "@jupyterlab/apputils": "^3.0.0-rc.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-sparklines": "^1.7.0"
   },
   "devDependencies": {
     "@types/react": "~16.9.0",
     "@types/react-dom": "~16.9.0",
     "@types/react-sparklines": "^1.7.0",
-    "rimraf": "^2.6.1",
-    "typescript": "~3.8.1"
+    "rimraf": "^3.0.2",
+    "typescript": "~4.0.3"
   }
 }
