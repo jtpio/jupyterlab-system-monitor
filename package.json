@@ -5,7 +5,7 @@
     "build": "lerna run build",
     "build:prod": "lerna run build:prod --stream --scope jupyterlab-system-monitor",
     "clean": "lerna run clean",
-    "develop": "jupyter labextension develop packages/system-monitor --overwrite",
+    "develop": "jupyter labextension develop . --overwrite",
     "lint": "jlpm run eslint && jlpm run prettier",
     "lint:check": "jlpm run eslint:check && jlpm run prettier:check",
     "eslint": "eslint . --ext .ts,.tsx --fix",
