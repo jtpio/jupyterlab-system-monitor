@@ -31,7 +31,7 @@ jobs:
 
     - name: Install the extension
       run: |
-        jlpm bootstrap
+        jlpm && jlpm bootstrap
         python -m pip install -e .
         jupyter labextension list 2>&1 | grep -ie "jupyterlab-system-monitor.*OK"
 
