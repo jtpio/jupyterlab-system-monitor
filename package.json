@@ -4,7 +4,6 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "link": "lerna run link && jupyter labextension install jupyterlab-topbar-extension",
     "lint": "jlpm run eslint && jlpm run prettier",
     "lint:check": "jlpm run eslint:check && jlpm run prettier:check",
     "eslint": "eslint . --ext .ts,.tsx --fix",
