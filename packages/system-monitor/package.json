@@ -68,6 +68,12 @@
         }
       }
     },
-    "outputDir": "../../jupyterlab-system-monitor/labextension"
+    "outputDir": "../../jupyterlab-system-monitor/labextension",
+    "sharedPackages": {
+      "jupyterlab-topbar": {
+        "bundled": false,
+        "singleton": true
+      }
+    }
   }
 }
