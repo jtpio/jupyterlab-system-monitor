@@ -42,15 +42,15 @@
     "watch:src": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0-rc.7",
-    "@jupyterlab/settingregistry": "^3.0.0-rc.7",
+    "@jupyterlab/application": "^3.0.0-rc.8",
+    "@jupyterlab/settingregistry": "^3.0.0-rc.8",
     "jupyterlab-system-monitor-base": "^0.6.0",
     "@lumino/coreutils": "^1.5.3",
     "@lumino/signaling": "^1.4.3",
     "jupyterlab-topbar": "^0.6.0"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.0.0-rc.7",
+    "@jupyterlab/builder": "^3.0.0-rc.8",
     "rimraf": "^3.0.2",
     "typescript": "~4.0.3"
   },
