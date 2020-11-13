@@ -3,7 +3,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "build:prod": "lerna run build:prod --stream --scope jupyterlab-system-monitor",
+    "build:prod": "lerna run build:prod",
     "clean": "lerna run clean",
     "develop": "jupyter labextension develop . --overwrite",
     "lint": "jlpm run eslint && jlpm run prettier",

@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:prod": "tsc",
     "link": "jupyter labextension link . --no-build",
     "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build",
