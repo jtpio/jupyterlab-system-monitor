@@ -63,8 +63,8 @@ const extension: JupyterFrontEndPlugin<void> = {
       refreshRate = settings.get('refreshRate').composite as number;
       const cpuSettings = settings.get('cpu').composite as IResourceSettings;
       cpuLabel = cpuSettings.label;
-      const memorySettings =
-        settings.get('memory').composite as IResourceSettings;
+      const memorySettings = settings.get('memory')
+        .composite as IResourceSettings;
       memoryLabel = memorySettings.label;
     }
 
