@@ -98,6 +98,10 @@ You can change the label and refresh rate in JupyterLab's advanced settings edit
 
 ![jupyterlab_setting](./doc/setting.png)
 
+## Troubleshooting
+
+If you are experiencing issues with the memory and cpu indicators not being displayed, make sure to check the [nbresuse changelog](https://github.com/yuvipanda/nbresuse/blob/master/CHANGELOG.md) for any breaking changes from major releases.
+
 ## Development
 
 ```bash
