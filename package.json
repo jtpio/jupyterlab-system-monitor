@@ -24,8 +24,6 @@
     }
   },
   "resolutions": {
-    "@jupyterlab/application": "^3.0.0-rc.10",
-    "@jupyterlab/apputils": "^3.0.0-rc.10",
     "react": "^17",
     "@types/react": "^17"
   },
