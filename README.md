@@ -2,6 +2,7 @@
 
 ![Github Actions Status](https://github.com/jtpio/jupyterlab-system-monitor/workflows/Build/badge.svg)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jtpio/jupyterlab-system-monitor/stable?urlpath=lab)
+[![PyPI](https://img.shields.io/pypi/v/jupyterlab-system-monitor.svg)](https://pypi.org/project/jupyterlab-system-monitor)
 
 JupyterLab extension to display system information (memory and cpu usage).
 
