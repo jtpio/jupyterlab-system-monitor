@@ -3,8 +3,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
+    "build:prod": "lerna run build:prod",
     "clean": "lerna run clean",
-    "link": "lerna run link && jupyter labextension install jupyterlab-topbar-extension",
+    "develop": "jupyter labextension develop . --overwrite",
     "lint": "jlpm run eslint && jlpm run prettier",
     "lint:check": "jlpm run eslint:check && jlpm run prettier:check",
     "eslint": "eslint . --ext .ts,.tsx --fix",
@@ -21,6 +22,12 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "resolutions": {
+    "@jupyterlab/application": "^3.0.0-rc.10",
+    "@jupyterlab/apputils": "^3.0.0-rc.10",
+    "react": "^17",
+    "@types/react": "^17"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.21.0",

@@ -25,6 +25,18 @@ This extension was originally developed as part of the [jupyterlab-topbar](https
 
 This extension requires the `nbresuse` package and the `jupyterlab-topbar-extension` extension for JupyterLab.
 
+**Note: This extension is not compatible with `nbresuse==0.3.4`**.
+
+Starting from JupyterLab 3.0, extensions can be distributed as a Python package. Installation instructions will differ depending on your version of JupyterLab:
+
+### JupyterLab 3.x
+
+```bash
+pip install jupyterlab-system-monitor
+```
+
+### JupyterLab 2.x
+
 ```bash
 pip install nbresuse
 jupyter labextension install jupyterlab-topbar-extension jupyterlab-system-monitor
@@ -41,8 +53,6 @@ Note: Node.js is required to install JupyterLab extensions. It can be installed 
 ```bash
 conda install -c conda-forge nodejs
 ```
-
-Note: This extension is not compatible with `nbresuse==0.3.4`.
 
 ## Configuration
 
@@ -88,6 +98,10 @@ You can change the label and refresh rate in JupyterLab's advanced settings edit
 
 ![jupyterlab_setting](./doc/setting.png)
 
+## Troubleshooting
+
+If you are experiencing issues with the memory and cpu indicators not being displayed, make sure to check the [nbresuse changelog](https://github.com/yuvipanda/nbresuse/blob/master/CHANGELOG.md) for any breaking changes from major releases.
+
 ## Development
 
 ```bash
@@ -98,9 +112,18 @@ conda activate jupyterlab-system-monitor
 # Install dependencies
 jlpm
 
-# Build Typescript source
-jlpm run build
+# Install the package in development mode
+pip install -e .
 
-# Link the local extensions
-jlpm run link
+# Link your development version of the extension with JupyterLab
+jlpm run develop
+
+# Rebuild extension TypeScript source after making changes
+jlpm run build
+```
+
+### Uninstall
+
+```bash
+pip uninstall jupyterlab-system-monitor
 ```
