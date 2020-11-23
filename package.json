@@ -23,6 +23,12 @@
       "pre-commit": "lint-staged"
     }
   },
+  "resolutions": {
+    "@jupyterlab/application": "^3.0.0-rc.10",
+    "@jupyterlab/apputils": "^3.0.0-rc.10",
+    "react": "^17",
+    "@types/react": "^17"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",

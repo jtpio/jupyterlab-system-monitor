@@ -33,8 +33,8 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/apputils": "^3.0.0-rc.8",
-    "@jupyterlab/services": "^6.0.0-rc.8",
+    "@jupyterlab/apputils": "^3.0.0-rc.10",
+    "@jupyterlab/services": "^6.0.0-rc.10",
     "@lumino/coreutils": "^1.5.3",
     "@lumino/polling": "^1.3.3",
     "react": "^17.0.1",
