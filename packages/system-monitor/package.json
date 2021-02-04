@@ -64,7 +64,7 @@
           "conda"
         ],
         "base": {
-          "name": "nbresuse"
+          "name": "jupyter-resource-usage"
         }
       }
     },

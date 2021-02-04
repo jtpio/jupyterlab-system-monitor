@@ -3,6 +3,6 @@ channels:
 - conda-forge
 dependencies:
 - python=3
-- jupyterlab=2
-- nbresuse=0.3.6
+- jupyterlab=3
+- jupyter-resource-usage=0.5
 - nodejs
