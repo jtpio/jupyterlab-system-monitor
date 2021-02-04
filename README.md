@@ -6,7 +6,7 @@
 
 JupyterLab extension to display system information (memory and cpu usage).
 
-Provides an alternative frontend for the `nbresuse` metrics: [https://github.com/yuvipanda/nbresuse](https://github.com/yuvipanda/nbresuse)
+Provides an alternative frontend for the `jupyter-resource-usage` metrics: [https://github.com/jupyter-server/jupyter-resource-usage](https://github.com/jupyter-server/jupyter-resource-usage)
 
 ![screencast](./doc/screencast.gif)
 
@@ -24,7 +24,7 @@ This extension was originally developed as part of the [jupyterlab-topbar](https
 
 ## Installation
 
-This extension requires the `nbresuse` package and the `jupyterlab-topbar-extension` extension for JupyterLab.
+This extension requires the `jupyter-resource-usage` package and the `jupyterlab-topbar-extension` extension for JupyterLab.
 
 **Note: This extension is not compatible with `nbresuse==0.3.4`**.
 
@@ -61,7 +61,7 @@ conda install -c conda-forge nodejs
 
 You can set the memory and cpu limits (but not enforce it) to display the indicator in the top bar.
 
-For more info, check the [memory limit](https://github.com/yuvipanda/nbresuse#memory-limit) in the [nbresuse](https://github.com/yuvipanda/nbresuse) repository.
+For more info, check the [memory limit](https://github.com/jupyter-server/jupyter-resource-usage#memory-limit) in the [nbresuse](https://github.com/jupyter-server/jupyter-resource-usage) repository.
 
 Edit `~/.jupyter/jupyter_notebook_config.py` (note: see [here](https://jupyter-notebook.readthedocs.io/en/stable/config.html#config-file-and-command-line-options) if you do not have a config file:
 
@@ -101,7 +101,7 @@ You can change the label and refresh rate in JupyterLab's advanced settings edit
 
 ## Troubleshooting
 
-If you are experiencing issues with the memory and cpu indicators not being displayed, make sure to check the [nbresuse changelog](https://github.com/yuvipanda/nbresuse/blob/master/CHANGELOG.md) for any breaking changes from major releases.
+If you are experiencing issues with the memory and cpu indicators not being displayed, make sure to check the [nbresuse changelog](https://github.com/jupyter-server/jupyter-resource-usage/blob/master/CHANGELOG.md) for any breaking changes from major releases.
 
 ## Development
 
