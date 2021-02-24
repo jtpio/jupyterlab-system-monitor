@@ -5,4 +5,5 @@ dependencies:
 - python=3
 - jupyterlab=3
 - jupyter-resource-usage=0.5
+- jupyterlab-system-monitor=0.8
 - nodejs
