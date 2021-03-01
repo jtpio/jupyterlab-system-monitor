@@ -69,19 +69,19 @@ Edit `~/.jupyter/jupyter_notebook_config.py` (note: see [here](https://jupyter-n
 c = get_config()
 
 # memory
-c.NotebookApp.ResourceUseDisplay.mem_limit = <size_in_GB> *1024*1024*1024
+c.ResourceUseDisplay.mem_limit = <size_in_GB> *1024*1024*1024
 
 # cpu
-c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True
-c.NotebookApp.ResourceUseDisplay.cpu_limit = <number_of_cpus>
+c.ResourceUseDisplay.track_cpu_percent = True
+c.ResourceUseDisplay.cpu_limit = <number_of_cpus>
 ```
 
 For example:
 
 ```python
-c.NotebookApp.ResourceUseDisplay.mem_limit = 4294967296
-c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True
-c.NotebookApp.ResourceUseDisplay.cpu_limit = 2
+c.ResourceUseDisplay.mem_limit = 4294967296
+c.ResourceUseDisplay.track_cpu_percent = True
+c.ResourceUseDisplay.cpu_limit = 2
 ```
 
 Or use the command line option:
