@@ -54,6 +54,7 @@ export namespace ResourceUsage {
           this._cpuAvailable = false;
           this._currentMemory = 0;
           this._memoryLimit = null;
+          this._cpuLimit = null;
           this._units = 'B';
 
           if (oldMemoryAvailable || oldCpuAvailable) {
@@ -98,6 +99,13 @@ export namespace ResourceUsage {
      */
     get memoryLimit(): number | null {
       return this._memoryLimit;
+    }
+
+    /**
+     * The current cpu limit, or null if not specified.
+     */
+    get cpuLimit(): number | null {
+      return this._cpuLimit;
     }
 
     /**
@@ -167,10 +175,9 @@ export namespace ResourceUsage {
         : null;
 
       const cpuPercent = value.cpu_percent;
+      this._cpuLimit = value.limits.cpu ? value.limits.cpu.cpu : 1;
       this._cpuAvailable = cpuPercent !== undefined;
-      this._currentCpuPercent = this._cpuAvailable
-        ? Math.min(1, cpuPercent / 100)
-        : 0;
+      this._currentCpuPercent = this._cpuAvailable ? cpuPercent / 100 : 0;
 
       this._values.push({ memoryPercent, cpuPercent: this._currentCpuPercent });
       this._values.shift();
@@ -182,6 +189,7 @@ export namespace ResourceUsage {
     private _currentMemory = 0;
     private _currentCpuPercent = 0;
     private _memoryLimit: number | null = null;
+    private _cpuLimit: number | null = null;
     private _poll: Poll<Private.IMetricRequestResult | null>;
     private _units: MemoryUnit = 'B';
     private _changed = new Signal<this, void>(this);
