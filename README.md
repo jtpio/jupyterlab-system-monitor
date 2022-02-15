@@ -99,6 +99,18 @@ You can change the label and refresh rate in JupyterLab's advanced settings edit
 
 ![jupyterlab_setting](./doc/setting.png)
 
+### Usage with Docker and containers
+
+When this extension is running when Jupyter is hosted in a Docker container you will need to make some small adjustments. By default `psutil` reads the resources available to the entire system e.g. `/proc/meminfo`. However Docker uses cgroups to limit what resources are available to the container. Running in a container does not have an impact on the memory or CPU usage numbers, only the limits. The extension looks at all the running processes and sums up their usage. As Docker can not see processes outside the container this number will be correct.
+
+If you are launching your Docker container with the `--cpus` and `--memory` options the easiest solution is to just pass these same values as environment variables and read them from inside the container and set limits as described in the previous configuration section. e.g.
+
+```
+docker run --cpus=4 --memory=16g -e CPU_LIMIT=4 -e MEM_LIMIT=16g <remaining args>
+```
+
+If you do not have access to these values you can get the memory limit via the cgroups file: `/sys/fs/cgroup/memory/memory.limit_in_bytes`. The CPU limit is much more difficult and highly depends on your use case. You will need to consult with the admin who is running your container in order to determine what CPU restrictions have been put in place.
+
 ## Troubleshooting
 
 If you are experiencing issues with the memory and cpu indicators not being displayed, make sure to check the [nbresuse changelog](https://github.com/jupyter-server/jupyter-resource-usage/blob/master/CHANGELOG.md) for any breaking changes from major releases.
