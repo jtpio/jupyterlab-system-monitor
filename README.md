@@ -99,7 +99,7 @@ You can change the label and refresh rate in JupyterLab's advanced settings edit
 
 ![jupyterlab_setting](./doc/setting.png)
 
-### Usage with Docker/containers
+### Usage with Docker and containers
 
 When this extension is running when Jupyter is hosted in a Docker container you will need to make some small adjustments. By default `psutil` reads the resources available to the entire system e.g. `/proc/meminfo`. However Docker uses cgroups to limit what resources are available to the container. Running in a container does not have an impact on the memory or CPU usage numbers, only the limits. The extension looks at all the running processes and sums up their usage. As Docker can not see processes outside the container this number will be correct.
 
