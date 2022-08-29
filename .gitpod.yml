@@ -23,7 +23,7 @@ tasks:
       micromamba activate
       EOT
       source /workspace/bin/activate-env.sh
-      micromamba install -n base -y python=3.10 nodejs=14 jupyterlab=3 yarn
+      micromamba install -n base -y python=3.10 nodejs=14 jupyterlab=3 jupyter-packaging=0.7 yarn
       python -m pip install -e ".[dev,test]" && jlpm && jlpm run build && jupyter labextension develop . --overwrite
       gp sync-done setup
     command: |
