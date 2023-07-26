@@ -4,6 +4,22 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jtpio/jupyterlab-system-monitor/stable?urlpath=lab)
 [![PyPI](https://img.shields.io/pypi/v/jupyterlab-system-monitor.svg)](https://pypi.org/project/jupyterlab-system-monitor)
 
+## ⚠️ Archived ⚠️
+
+This repository is now **archived**.
+
+The Top Bar components have been moved to the Jupyter Resource Usage extension: https://github.com/jupyter-server/jupyter-resource-usage
+
+If you are using JupyterLab 4+, install with:
+
+```
+pip install jupyter-resource-usage
+```
+
+If you are using JupyterLab 3, you can still install `jupyterlab-system-monitor` but the extension is not maintained anymore.
+
+---
+
 JupyterLab extension to display system information (memory and cpu usage).
 
 Provides an alternative frontend for the `jupyter-resource-usage` metrics: [https://github.com/jupyter-server/jupyter-resource-usage](https://github.com/jupyter-server/jupyter-resource-usage)
